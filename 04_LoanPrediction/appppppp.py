@@ -39,8 +39,9 @@ input_data = pd.DataFrame({
     "Property_Area": [2 if property_area == "Urban" else 1 if property_area == "Semiurban" else 0]
 })
 
-# Predict
+# Prediction yha sai hoga
 if st.button("Predict Loan Approval"):
     prediction = model.predict(input_data)[0]
     result = "✅ Loan Approved" if prediction == "Y" else "❌ Loan Rejected"
     st.success(result)
+
