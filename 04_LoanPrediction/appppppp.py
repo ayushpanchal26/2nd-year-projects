@@ -4,7 +4,14 @@ import numpy as np
 import pickle
 
 # Load model
-model = pickle.load(open("loan.pkl", "rb"))
+# model = pickle.load(open("loan.pkl", "rb"))
+import os
+if os.path.exists("loan.pkl"):
+    with open("loan.pkl", "rb") as f:
+        model = pickle.load(f)
+else:
+    st.error("Model file not found. Please upload loan.pkl.")
+
 
 st.set_page_config(page_title="Loan Approval Predictor")
 st.title("🏦 Loan Approval Prediction App")
@@ -39,9 +46,8 @@ input_data = pd.DataFrame({
     "Property_Area": [2 if property_area == "Urban" else 1 if property_area == "Semiurban" else 0]
 })
 
-# Prediction yha sai hoga
+# Predict
 if st.button("Predict Loan Approval"):
     prediction = model.predict(input_data)[0]
     result = "✅ Loan Approved" if prediction == "Y" else "❌ Loan Rejected"
     st.success(result)
-
