@@ -3,332 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Life of Jia & Aryan</title>
+    <title>Who's watching? - Netflix</title>
     <style>
-        :root {
-            --netflix-red: #E50914;
-            --netflix-black: #141414;
-            --text-color: #fff;
-            --hover-color: #b3b3b3;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@400;500;700&display=swap');
 
-        body, html {
+        body {
             margin: 0;
             padding: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--netflix-black);
+            background-color: #141414;
+            color: #fff;
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            color: var(--text-color);
-            overflow-x: hidden;
-        }
-
-        /* Navbar */
-        .navbar {
-            display: flex;
-            align-items: center;
-            padding: 0 4%;
-            height: 68px;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.7) 10%, rgba(0,0,0,0));
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 100;
-            box-sizing: border-box;
-            padding-left: 100px;
-        }
-
-        .logo {
-            color: var(--netflix-red);
-            font-size: 24px;
-            font-weight: 700;
-            text-decoration: none;
-            margin-right: 40px;
-            letter-spacing: 1px;
-            font-family: 'Arial Black', sans-serif;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-links li {
-            margin-left: 20px;
-        }
-
-        .nav-links a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.4s;
-            font-weight: 500;
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--hover-color);
-        }
-
-        /* Sidebar Navigation */
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 80px;
-            background-color: transparent;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding-top: 100px;
-            z-index: 110;
-        }
-
-        .sidebar-icon {
-            color: #808080;
-            margin-bottom: 35px;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .sidebar-icon:hover, .sidebar-icon.active {
-            color: white;
-        }
-
-        /* Hero Section */
-        .hero {
-            position: relative;
-            height: 85vh;
-            width: 100%;
-            background: url('https://images.unsplash.com/photo-1515238152791-8216bfdf89a7?q=80&w=2072&auto=format&fit=crop') no-repeat center center;
-            background-size: cover;
-            display: flex;
-            align-items: center;
-            padding-left: 100px; /* Offset for sidebar */
-            box-sizing: border-box;
-        }
-
-        .hero::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 70%),
-                        linear-gradient(to top, var(--netflix-black) 0%, rgba(0,0,0,0) 20%);
-            z-index: 1;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 50%;
-            margin-top: 50px;
-        }
-
-        .series-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
-            font-size: 12px;
-            font-weight: bold;
-            letter-spacing: 4px;
-            color: #ccc;
-        }
-
-        .series-n {
-            color: var(--netflix-red);
-            font-size: 18px;
-            font-weight: 900;
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin: 0 0 20px 0;
-            color: #fbd65b; /* Yellowish gold color for the title */
-            line-height: 1.1;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            font-family: Arial, sans-serif;
-            letter-spacing: -1px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 15px;
-        }
-
-        .btn {
-            display: flex;
-            align-items: center;
             justify-content: center;
-            padding: 8px 24px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 4px;
-            cursor: pointer;
-            border: none;
-            transition: background-color 0.2s, transform 0.2s;
+            height: 100vh;
+            overflow: hidden;
         }
 
-        .btn-play {
-            background-color: white;
-            color: black;
+        /* Netflix Logo */
+        .logo-container {
+            position: absolute;
+            top: 20px;
+            left: 40px;
         }
 
-        .btn-play:hover {
-            background-color: rgba(255, 255, 255, 0.75);
+        .logo {
+            fill: #e50914;
+            height: 45px;
         }
 
-        .btn-more {
-            background-color: rgba(109, 109, 110, 0.7);
-            color: white;
-            width: 150px;
+        h1 {
+            font-size: 3.5vw;
+            font-weight: 500;
+            margin-bottom: 2em;
         }
 
-        .btn-more:hover {
-            background-color: rgba(109, 109, 110, 0.4);
-        }
-
-        .btn svg {
-            margin-right: 10px;
-            width: 24px;
-            height: 24px;
-            fill: currentColor;
-        }
-
-        /* Sliders / Rows */
-        .row {
-            margin-top: -50px;
-            padding-left: 100px; /* Offset for sidebar */
-            margin-bottom: 3vw;
-            position: relative;
-            z-index: 5;
-        }
-
-        .row-title {
-            font-size: 1.4vw;
-            color: #e5e5e5;
-            font-weight: 700;
-            margin: 0 4% 0.5em 0;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .row-posters {
+        .profiles-container {
             display: flex;
-            overflow-y: hidden;
-            overflow-x: scroll;
-            padding: 20px 0;
-            scrollbar-width: none; /* Firefox */
+            gap: 2vw;
+            justify-content: center;
         }
 
-        .row-posters::-webkit-scrollbar {
-            display: none; /* Safari and Chrome */
+        .profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: grey;
+            transition: color 0.2s ease-in-out;
+            width: max(10vw, 84px);
+            max-width: 200px;
         }
 
-        .row-poster {
-            width: 250px;
-            height: 140px;
-            object-fit: cover;
+        .profile:hover {
+            color: white;
+        }
+
+        .avatar {
+            width: 100%;
+            aspect-ratio: 1 / 1;
             border-radius: 4px;
-            margin-right: 10px;
-            transition: transform 450ms;
+            background-size: cover;
+            background-position: center;
+            border: 3px solid transparent;
+            box-sizing: border-box;
+            transition: border-color 0.2s ease-in-out;
+            position: relative;
+        }
+
+        .profile:hover .avatar {
+            border-color: white;
+        }
+
+        .name {
+            margin-top: 0.6em;
+            font-size: 1.3vw;
+            text-align: center;
+        }
+
+        /* Manage Profiles Button */
+        .manage-btn {
+            margin-top: 4em;
+            padding: 0.5em 1.5em;
+            background: transparent;
+            color: grey;
+            border: 1px solid grey;
+            font-size: 1.2vw;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             cursor: pointer;
+            transition: all 0.2s ease;
         }
 
-        .row-poster:hover {
-            transform: scale(1.08);
-            z-index: 10;
+        .manage-btn:hover {
+            color: white;
+            border-color: white;
         }
 
-        /* SVG Icons */
-        .icon {
-            width: 24px;
-            height: 24px;
+        @media (max-width: 800px) {
+            h1 { font-size: 30px; }
+            .name { font-size: 14px; }
+            .manage-btn { font-size: 14px; }
+            .profiles-container { gap: 15px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navbar -->
-    <div class="navbar">
-        <a href="#" class="logo">NETFLIX</a>
-        <ul class="nav-links">
-            <li><a href="#" class="active">Home</a></li>
-            <li><a href="#">TV Shows</a></li>
-            <li><a href="#">Movies</a></li>
-            <li><a href="#">New & Popular</a></li>
-            <li><a href="#">My List</a></li>
-            <li><a href="#">Browse by Languages</a></li>
-        </ul>
+    <div class="logo-container">
+        <svg viewBox="0 0 111 30" class="logo" aria-hidden="true">
+            <path d="M105.06233,14.2806261 L110.999156,30 C109.249227,29.7497422 107.500234,29.4366857 105.718437,29.1554972 L102.374168,20.4686475 L98.9371075,28.4375293 C97.2499766,28.1563408 95.5928391,28.061674 93.9057081,27.8432843 L99.9372012,14.0931671 L94.4680851,-5.68434189e-14 L100.531859,-5.68434189e-14 L103.59305,7.87521631 L106.531805,-5.68434189e-14 L112.249257,-5.68434189e-14 L105.06233,14.2806261 Z M90.4686475,-5.68434189e-14 L85.8749649,-5.68434189e-14 L85.8749649,27.2499766 C87.3746368,27.3437061 88.9371075,27.4055675 90.4686475,27.5930265 L90.4686475,-5.68434189e-14 Z M81.9055207,26.93692 C77.7186241,26.6557316 73.5307901,26.4064111 69.250164,26.3117443 L69.250164,-5.68434189e-14 L73.9366389,-5.68434189e-14 L73.9366389,21.8745899 C76.6248008,21.9373887 79.3120255,22.1557784 81.9055207,22.2804387 L81.9055207,26.93692 Z M64.2496954,10.6563982 L64.2496954,15.3432843 C57.4066852,15.8431028 50.5003504,16.4061686 43.687441,17.1557451 L43.687441,21.3435133 C48.4376512,20.7804475 53.1556214,20.3117765 57.9687158,19.9054619 L57.9687158,24.3122113 C53.2185056,24.687508 48.4683569,25.1245022 43.687441,25.5936496 L43.687441,29.9996025 C38.9372308,30.436759 34.1557088,30.9998248 29.3742484,31.5628906 L29.3742484,-5.68434189e-14 L64.2496954,-5.68434189e-14 L64.2496954,4.68740523 C55.3752835,4.21870197 46.5005898,3.90566838 37.5937171,3.74971257 L37.5937171,11.5306634 C46.4682054,11.1243487 55.342961,10.8741872 64.2496954,10.6563982 Z M27.1873132,31.7816035 L22.5623881,32.2505295 L22.5623881,-5.68434189e-14 L27.1873132,-5.68434189e-14 L27.1873132,31.7816035 Z M18.1561681,32.6561081 L13.500234,33.0624227 L13.500234,13.718361 L5.03126839,13.718361 L5.03126839,-5.68434189e-14 L31.5001227,-5.68434189e-14 L31.5001227,13.718361 L22.7501533,13.718361 L22.7501533,32.6561081 L18.1561681,32.6561081 Z M0,34.4061559 L4.84364402,33.9372132 L4.84364402,11.000305 L10.8436495,33.1563385 L15.6560935,32.4999298 L15.6560935,-5.68434189e-14 L10.8123282,-5.68434189e-14 L10.8123282,23.3435133 L4.78119401,-5.68434189e-14 L0,-5.68434189e-14 L0,34.4061559 Z"></path>
+        </svg>
     </div>
 
-    <!-- Sidebar (Left side icons) -->
-    <div class="sidebar">
-        <!-- Search -->
-        <svg class="sidebar-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        <!-- Home -->
-        <svg class="sidebar-icon active" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-        <!-- Series/TV -->
-        <svg class="sidebar-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><polyline points="17 2 12 7 7 2"></polyline></svg>
-        <!-- Movies -->
-        <svg class="sidebar-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
-        <!-- My List -->
-        <svg class="sidebar-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+    <h1>Who's watching?</h1>
+
+    <div class="profiles-container">
+        <!-- Jia Profile -->
+        <a href="home.html" class="profile">
+            <div class="avatar" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png');"></div>
+            <span class="name">Jia</span>
+        </a>
+
+        <!-- Aryan Profile -->
+        <a href="home.html" class="profile">
+            <div class="avatar" style="background-image: url('https://pro2-bar-s3-cdn-cf1.myportfolio.com/dddb0c1b4ab622854dd81280840458d3/98032aebff601c1d993e12a0_rw_600.png?h=8030f4d5734548795c22da59ca72e3e1');"></div>
+            <span class="name">Aryan</span>
+        </a>
+
+        <!-- Kids Profile -->
+        <a href="home.html" class="profile">
+            <div class="avatar" style="background-image: url('https://occ-0-2794-2219.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABY5cwIbM7shRfcXmfQg98cqMqiZZ8sReZnj4y_keCAHeXmG_SoqLD8SXYistPtesdqiqRSO3gleeHXj1y12cK_xG7vF1.png?r=a41');"></div>
+            <span class="name">Guest</span>
+        </a>
     </div>
 
-    <!-- Hero Section -->
-    <div class="hero">
-        <div class="hero-content">
-            <div class="series-logo">
-                <span class="series-n">N</span> SERIES
-            </div>
-            <h1 class="hero-title">Life of jia<br>& aryan</h1>
-            <div class="hero-buttons">
-                <button class="btn btn-play">
-                    <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                    Play
-                </button>
-                <button class="btn btn-more">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="12" y1="16" x2="12" y2="12"></line>
-                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                    </svg>
-                    More Info
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Rows -->
-    <div class="row" style="margin-top: -100px;">
-        <h2 class="row-title">Popular on Netflix</h2>
-        <div class="row-posters">
-            <img class="row-poster" src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=800&auto=format&fit=crop" alt="Thumbnail">
-            <img class="row-poster" src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=800&auto=format&fit=crop" alt="Thumbnail">
-            <img class="row-poster" src="https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=800&auto=format&fit=crop" alt="Thumbnail">
-            <img class="row-poster" src="https://images.unsplash.com/photo-1501901609772-df0848060b33?q=80&w=800&auto=format&fit=crop" alt="Thumbnail">
-            <img class="row-poster" src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=800&auto=format&fit=crop" alt="Thumbnail">
-            <img class="row-poster" src="https://images.unsplash.com/photo-1520182205149-1e5e4e7329b4?q=80&w=800&auto=format&fit=crop" alt="Thumbnail">
-        </div>
-    </div>
-
-    <div class="row">
-        <h2 class="row-title" style="margin-top: 30px;">Recently Watched</h2>
-        <div class="row-posters">
-            <img class="row-poster" src="https://images.unsplash.com/photo-1481214110143-ed630356e1bb?q=80&w=800&auto=format&fit=crop" alt="Thumbnail">
-            <img class="row-poster" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=800&auto=format&fit=crop" alt="Thumbnail">
-            <img class="row-poster" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop" alt="Thumbnail">
-            <img class="row-poster" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800&auto=format&fit=crop" alt="Thumbnail">
-            <img class="row-poster" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=800&auto=format&fit=crop" alt="Thumbnail">
-        </div>
-    </div>
+    <button class="manage-btn">Manage Profiles</button>
 
 </body>
 </html>
