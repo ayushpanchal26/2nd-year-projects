@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anniversary Reel Template</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #0d0d0d;
+      --text-color: #f1f1f1;
+      --accent-color: #ffffff;
+      --border-radius: 12px;
+      --font-family: 'Quicksand', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: var(--font-family);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      display: flex;
+      width: 100%;
+      max-width: 1200px;
+      height: 100vh;
+      padding: 2rem;
+      gap: 4rem;
+    }
+
+    /* Left Side: Image */
+    .left-side {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .image-wrapper {
+      width: 320px;
+      height: 320px;
+      border-radius: var(--border-radius);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      /* Subtle glow effect to match the template feeling */
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+    }
+
+    .cover-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Right Side: Credits */
+    .right-side {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden; /* To clip the scrolling text */
+      mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+      -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+    }
+
+    .credits-container {
+      width: 100%;
+      max-width: 400px;
+      height: 100%;
+      position: relative;
+    }
+
+    .credits-scroll {
+      position: absolute;
+      top: 100%; /* Start below the visible area */
+      left: 0;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      animation: scrollUp 20s linear forwards;
+    }
+
+    @keyframes scrollUp {
+      0% {
+        transform: translateY(0);
+      }
+      100% {
+        transform: translateY(-300%); /* Adjust based on content height */
+      }
+    }
+
+    .credit-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      align-items: end;
+    }
+
+    .role {
+      text-align: right;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .name {
+      text-align: left;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent-color);
+    }
+
+    .credit-section-title {
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.7);
+      margin: 1.5rem 0 0.5rem 0;
+    }
+
+    .credit-text-center {
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent-color);
+    }
+
+    .credit-title-large {
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent-color);
+      margin-top: 1rem;
+    }
+
+    .spacer {
+      height: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left-side">
+      <div class="image-wrapper">
+        <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=1000&auto=format&fit=crop" alt="Romantic sunset" class="cover-image" />
+      </div>
+    </div>
+
+    <div class="right-side">
+      <div class="credits-container">
+        <div class="credits-scroll">
+          <div class="credit-row">
+            <span class="role">Directed by</span>
+            <span class="name">God</span>
+          </div>
+
+          <div class="credit-section-title">Cast</div>
+
+          <div class="credit-row">
+            <span class="role">Boyfriend</span>
+            <span class="name">[Your name]</span>
+          </div>
+          <div class="credit-row">
+            <span class="role">Girlfriend</span>
+            <span class="name">[Partner's name]</span>
+          </div>
+
+          <div class="spacer"></div>
+
+          <div class="credit-row">
+            <span class="role">Written by</span>
+            <span class="name">Fate & destiny</span>
+          </div>
+          <div class="credit-row">
+            <span class="role">Produced by</span>
+            <span class="name">Love</span>
+          </div>
+          <div class="credit-row">
+            <span class="role">Cinematography by</span>
+            <span class="name">Memories</span>
+          </div>
+          <div class="credit-row">
+            <span class="role">Music by</span>
+            <span class="name">Heartbeats</span>
+          </div>
+          <div class="credit-row">
+            <span class="role">Distributed by</span>
+            <span class="name">The Universe</span>
+          </div>
+          <div class="credit-row">
+            <span class="role">Release Date</span>
+            <span class="name">[Your anniversary date]</span>
+          </div>
+
+          <div class="spacer"></div>
+
+          <div class="credit-section-title">Special Thanks To</div>
+          <div class="credit-text-center">Our families and friends</div>
+          <div class="credit-text-center">For their endless support</div>
+          <div class="credit-text-center">And to you, for being my everything</div>
+
+          <div class="spacer"></div>
+
+          <div class="credit-title-large">Happy Anniversary!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
