@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Contacts</h2>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title">Import Contacts</h5>
+        <form method="POST" enctype="multipart/form-data" class="d-flex align-items-center">
+            <input class="form-control me-2" type="file" id="file" name="file" accept=".csv" required>
+            <button class="btn btn-success" type="submit">Import CSV</button>
+        </form>
+        <small class="text-muted">CSV Format: Column 1 = Name, Column 2 = Phone Number</small>
+    </div>
+</div>
+
+<h4>Contact List</h4>
+<table class="table table-striped mt-3">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Phone Number</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for contact in contacts %}
+        <tr>
+            <td>{{ contact['id'] }}</td>
+            <td>{{ contact['name'] }}</td>
+            <td>{{ contact['phone_number'] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

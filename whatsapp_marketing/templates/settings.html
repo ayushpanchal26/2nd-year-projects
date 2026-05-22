@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Settings</h2>
+<p>Enter your Meta WhatsApp Cloud API credentials.</p>
+
+<form method="POST">
+    <div class="mb-3">
+        <label for="phone_number_id" class="form-label">Phone Number ID</label>
+        <input type="text" class="form-control" id="phone_number_id" name="phone_number_id" value="{{ settings['phone_number_id'] if settings else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="business_account_id" class="form-label">WhatsApp Business Account ID</label>
+        <input type="text" class="form-control" id="business_account_id" name="business_account_id" value="{{ settings['business_account_id'] if settings else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="access_token" class="form-label">Permanent Access Token</label>
+        <input type="password" class="form-control" id="access_token" name="access_token" value="{{ settings['access_token'] if settings else '' }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Save Settings</button>
+</form>
+{% endblock %}

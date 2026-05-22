@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Message Templates</h2>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title">Create New Template</h5>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="name" class="form-label">Template Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label for="language" class="form-label">Language Code (e.g. en_US)</label>
+                <input type="text" class="form-control" id="language" name="language" value="en_US" required>
+            </div>
+            <button class="btn btn-primary" type="submit">Submit for Approval</button>
+        </form>
+    </div>
+</div>
+
+<h4>Your Templates</h4>
+<table class="table table-striped mt-3">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Language</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for template in templates %}
+        <tr>
+            <td>{{ template['id'] }}</td>
+            <td>{{ template['name'] }}</td>
+            <td>{{ template['language'] }}</td>
+            <td>
+                {% if template['status'] == 'approved' %}
+                    <span class="badge bg-success">Approved</span>
+                {% elif template['status'] == 'pending' %}
+                    <span class="badge bg-warning text-dark">Pending</span>
+                {% else %}
+                    <span class="badge bg-secondary">{{ template['status'] }}</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
