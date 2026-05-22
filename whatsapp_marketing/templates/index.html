@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Dashboard</h2>
+<p>Welcome to the WhatsApp Marketing CRM.</p>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Settings</h5>
+                <p class="card-text">Configure Meta API credentials.</p>
+                <a href="/settings" class="btn btn-primary">Go to Settings</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Contacts</h5>
+                <p class="card-text">Import and manage your audience.</p>
+                <a href="/contacts" class="btn btn-primary">Go to Contacts</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Templates</h5>
+                <p class="card-text">Manage your message templates.</p>
+                <a href="/templates" class="btn btn-primary">Go to Templates</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Campaigns</h5>
+                <p class="card-text">Send bulk messages to your contacts.</p>
+                <a href="/campaigns" class="btn btn-success">Go to Campaigns</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

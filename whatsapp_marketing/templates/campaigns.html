@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Campaigns</h2>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title">Send Broadcast</h5>
+        <p>Send a message using an approved template to all imported contacts.</p>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="template_id" class="form-label">Select Template</label>
+                <select class="form-select" id="template_id" name="template_id" required>
+                    <option value="" selected disabled>Choose a template...</option>
+                    {% for template in templates %}
+                    <option value="{{ template['id'] }}">{{ template['name'] }} ({{ template['language'] }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button class="btn btn-primary" type="submit">Send Campaign</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
