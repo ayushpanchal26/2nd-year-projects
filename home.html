@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life of Jia & Aryan</title>
+    <style>
+        :root {
+            --netflix-red: #E50914;
+            --netflix-black: #141414;
+            --text-color: #fff;
+            --hover-color: #b3b3b3;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--netflix-black);
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            align-items: center;
+            padding: 0 4%;
+            height: 68px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7) 10%, rgba(0,0,0,0));
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            box-sizing: border-box;
+            padding-left: 100px;
+        }
+
+        .logo {
+            color: var(--netflix-red);
+            font-size: 24px;
+            font-weight: 700;
+            text-decoration: none;
+            margin-right: 40px;
+            letter-spacing: 1px;
+            font-family: 'Arial Black', sans-serif;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.4s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--hover-color);
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 80px;
+            background-color: transparent;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 100px;
+            z-index: 110;
+        }
+
+        .sidebar-icon {
+            color: #808080;
+            margin-bottom: 35px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .sidebar-icon:hover, .sidebar-icon.active {
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 85vh;
+            width: 100%;
+            background: url('https://images.unsplash.com/photo-1515238152791-8216bfdf89a7?q=80&w=2072&auto=format&fit=crop') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            padding-left: 100px; /* Offset for sidebar */
+            box-sizing: border-box;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 70%),
+                        linear-gradient(to top, var(--netflix-black) 0%, rgba(0,0,0,0) 20%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 50%;
+            margin-top: 50px;
+        }
+
+        .series-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 4px;
+            color: #ccc;
+        }
+
+        .series-n {
+            color: var(--netflix-red);
+            font-size: 18px;
+            font-weight: 900;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin: 0 0 20px 0;
+            color: #fbd65b; /* Yellowish gold color for the title */
+            line-height: 1.1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-family: Arial, sans-serif;
+            letter-spacing: -1px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        .btn-play {
+            background-color: white;
+            color: black;
+        }
+
+        .btn-play:hover {
+            background-color: rgba(255, 255, 255, 0.75);
+        }
+
+        .btn-more {
+            background-color: rgba(109, 109, 110, 0.7);
+            color: white;
+            width: 150px;
+        }
+
+        .btn-more:hover {
+            background-color: rgba(109, 109, 110, 0.4);
+        }
+
+        .btn svg {
+            margin-right: 10px;
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        /* Sliders / Rows */
+        .row {
+            margin-top: -50px;
+            padding-left: 100px; /* Offset for sidebar */
+            margin-bottom: 3vw;
+            position: relative;
+            z-index: 5;
+        }
+
+        .row-title {
+            font-size: 1.4vw;
+            color: #e5e5e5;
+            font-weight: 700;
+            margin: 0 4% 0.5em 0;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .row-posters {
+            display: flex;
+            overflow-y: hidden;
+            overflow-x: scroll;
+            padding: 20px 0;
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .row-posters::-webkit-scrollbar {
+            display: none; /* Safari and Chrome */
+        }
+
+        .row-poster {
+            width: 250px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-right: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .row-poster:hover {
+            transform: scale(1.08);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            z-index: 10;
+        }
+
+        /* SVG Icons */
+        .icon {
+            width: 24px;
+            height: 24px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="#" class="logo">NETFLIX</a>
+        <ul class="nav-links">
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#">TV Shows</a></li>
+            <li><a href="#">Movies</a></li>
+            <li><a href="#">New & Popular</a></li>
+            <li><a href="#">My List</a></li>
+            <li><a href="#">Browse by Languages</a></li>
+        </ul>
+    </div>
+
+    <!-- Sidebar (Left side icons) -->
+    <div class="sidebar">
+        <!-- Search -->
+        <svg class="sidebar-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <!-- Home -->
+        <svg class="sidebar-icon active" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        <!-- Series/TV -->
+        <svg class="sidebar-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><polyline points="17 2 12 7 7 2"></polyline></svg>
+        <!-- Movies -->
+        <svg class="sidebar-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+        <!-- My List -->
+        <svg class="sidebar-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-content">
+            <div class="series-logo">
+                <span class="series-n">N</span> SERIES
+            </div>
+            <h1 class="hero-title">Life of jia<br>& aryan</h1>
+            <div class="hero-buttons">
+                <a href="play.html" class="btn btn-play" style="text-decoration:none;">
+                    <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                    Play
+                </a>
+                <button class="btn btn-more">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                    More Info
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rows -->
+    <div class="row" style="margin-top: -100px;">
+        <h2 class="row-title">Popular on Netflix</h2>
+        <div class="row-posters">
+            <img class="row-poster" src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=800&auto=format&fit=crop" alt="Thumbnail">
+            <img class="row-poster" src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=800&auto=format&fit=crop" alt="Thumbnail">
+            <img class="row-poster" src="https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=800&auto=format&fit=crop" alt="Thumbnail">
+            <img class="row-poster" src="https://images.unsplash.com/photo-1501901609772-df0848060b33?q=80&w=800&auto=format&fit=crop" alt="Thumbnail">
+            <img class="row-poster" src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=800&auto=format&fit=crop" alt="Thumbnail">
+            <img class="row-poster" src="https://images.unsplash.com/photo-1520182205149-1e5e4e7329b4?q=80&w=800&auto=format&fit=crop" alt="Thumbnail">
+        </div>
+    </div>
+
+    <div class="row">
+        <h2 class="row-title" style="margin-top: 30px;">Recently Watched</h2>
+        <div class="row-posters">
+            <img class="row-poster" src="https://images.unsplash.com/photo-1481214110143-ed630356e1bb?q=80&w=800&auto=format&fit=crop" alt="Thumbnail">
+            <img class="row-poster" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=800&auto=format&fit=crop" alt="Thumbnail">
+            <img class="row-poster" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop" alt="Thumbnail">
+            <img class="row-poster" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800&auto=format&fit=crop" alt="Thumbnail">
+            <img class="row-poster" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=800&auto=format&fit=crop" alt="Thumbnail">
+        </div>
+    </div>
+
+</body>
+</html>
